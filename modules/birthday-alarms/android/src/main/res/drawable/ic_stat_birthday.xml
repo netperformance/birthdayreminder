@@ -1,0 +1,10 @@
+<!-- Torte mit Kerze, einfarbig fuer die Statusleiste. Gleiche Form wie das App-Icon. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+  <path android:fillColor="#FFFFFFFF" android:pathData="M50,10c4.6,5.5 6,8.8 6,11.2a6,6 0,0 1,-12 0c0,-2.4 1.4,-5.7 6,-11.2z"/>
+  <path android:fillColor="#FFFFFFFF" android:pathData="M45.5,31h9a0,0 0,0 1,0 0v17h-9z"/>
+  <path android:fillColor="#FFFFFFFF" android:pathData="M28,48h44a9,9 0,0 1,9 9v26a4,4 0,0 1,-4 4H23a4,4 0,0 1,-4 -4V57a9,9 0,0 1,9 -9z"/>
+</vector>
