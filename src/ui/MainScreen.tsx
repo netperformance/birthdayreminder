@@ -5,6 +5,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { monthName } from '../domain/format'
 import { effectiveReminders, GROUP_COLORS, NO_GROUP, type Group } from '../domain/model'
 import { zoneCity } from '../domain/zone'
+import { CalendarView } from './CalendarView'
 import { Button } from './controls'
 import { deriveHome } from './derive'
 import { DetailScreen } from './DetailScreen'
@@ -49,6 +50,10 @@ export function MainScreen({ prefs, onPref, keepOnReset, openRequest }: Props) {
 
   const [detailId, setDetailId] = useState<string | null>(null)
   const [newOpen, setNewOpen] = useState(false)
+  /** Tag und Monat für einen neuen Eintrag aus dem Kalender. */
+  const [newDate, setNewDate] = useState<{ day: number; month: number } | null>(null)
+  /** Liste oder Kalender. Bleibt beim nächsten Öffnen erhalten. */
+  const [view, setViewState] = useState<'list' | 'calendar'>('list')
   const [searchOpen, setSearchOpen] = useState(false)
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [importOpen, setImportOpen] = useState(false)
@@ -61,7 +66,15 @@ export function MainScreen({ prefs, onPref, keepOnReset, openRequest }: Props) {
 
   useEffect(() => {
     store.getMeta<string>(FILTER_KEY).then((v) => typeof v === 'string' && setFilterState(v)).catch(() => {})
+    store.getMeta<string>(VIEW_KEY).then((v) => (v === 'calendar' || v === 'list') && setViewState(v)).catch(() => {})
   }, [store])
+  const setView = (v: 'list' | 'calendar') => {
+    if (v === view) return
+    haptic('tick')
+    setViewState(v)
+    store.setMeta(VIEW_KEY, v)
+  }
+  const calendar = view === 'calendar' && people.length > 0
   const setFilter = (id: string | null) => {
     haptic('tick')
     setFilterState(id)
@@ -135,6 +148,7 @@ export function MainScreen({ prefs, onPref, keepOnReset, openRequest }: Props) {
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: true })}
         scrollEventThrottle={16}
       >
+        {!calendar && (
         <View style={styles.titleBlock} onLayout={(e) => setTitleHeight(e.nativeEvent.layout.height)}>
           <Text style={[styles.title, { color: c.text, fontSize: f(34) }]} accessibilityRole="header">
             {t.homeTitle}
@@ -147,6 +161,7 @@ export function MainScreen({ prefs, onPref, keepOnReset, openRequest }: Props) {
             </View>
           )}
         </View>
+        )}
 
         {showPause && (
           <View style={[styles.pause, { backgroundColor: c.pauseBg }]}>
@@ -172,6 +187,7 @@ export function MainScreen({ prefs, onPref, keepOnReset, openRequest }: Props) {
           </View>
         )}
 
+        {!calendar && (
         <View style={styles.addRow}>
           <Pressable onPress={() => setSearchOpen(true)} style={[styles.search, { backgroundColor: c.card }]} android_ripple={{ color: c.ripple }} accessibilityRole="search" accessibilityLabel={t.search}>
             <MaterialIcons name="search" size={20} color={c.text3} />
@@ -190,6 +206,7 @@ export function MainScreen({ prefs, onPref, keepOnReset, openRequest }: Props) {
             <MaterialIcons name="add" size={30} color={c.onAccent} />
           </Pressable>
         </View>
+        )}
 
         {groups.length > 0 && people.length > 0 && (
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.chips} keyboardShouldPersistTaps="handled">
@@ -200,9 +217,20 @@ export function MainScreen({ prefs, onPref, keepOnReset, openRequest }: Props) {
           </ScrollView>
         )}
 
-        {home.cards.length > 0 && <TodayCarousel cards={home.cards} settings={settings} onOpen={setDetailId} />}
+        {!calendar && home.cards.length > 0 && <TodayCarousel cards={home.cards} settings={settings} onOpen={setDetailId} />}
 
-        {people.length === 0 ? (
+        {calendar ? (
+          <CalendarView
+            people={visible}
+            groups={groups}
+            onOpen={setDetailId}
+            onCreateOn={(date) => {
+              haptic('tick')
+              setNewDate(date)
+              setNewOpen(true)
+            }}
+          />
+        ) : people.length === 0 ? (
           <View style={styles.empty}>
             <View style={[styles.emptyIcon, { backgroundColor: c.accentSoft }]}>
               <MaterialIcons name="cake" size={44} color={c.accentText} />
@@ -267,11 +295,17 @@ export function MainScreen({ prefs, onPref, keepOnReset, openRequest }: Props) {
       </Animated.ScrollView>
 
       <View style={[styles.topBar, { height: topBar, paddingTop: insets.top, backgroundColor: c.bg }]} pointerEvents="box-none">
-        <Animated.View style={[styles.topTitleWrap, { opacity: titleOpacity }]} pointerEvents="none">
-          <Text style={[styles.topTitle, { color: c.text, fontSize: f(20) }]} numberOfLines={1}>
-            {t.homeTitle}
-          </Text>
-        </Animated.View>
+        <View style={styles.topTitleWrap} pointerEvents="box-none">
+          {people.length > 0 ? (
+            <ViewToggle value={view} onChange={setView} />
+          ) : (
+            <Animated.View style={{ opacity: titleOpacity }} pointerEvents="none">
+              <Text style={[styles.topTitle, { color: c.text, fontSize: f(20) }]} numberOfLines={1}>
+                {t.homeTitle}
+              </Text>
+            </Animated.View>
+          )}
+        </View>
         <IconButton label={t.fontSmaller} disabled={prefs.fontStep === 0} onPress={() => font(-1)}>
           <Text style={[styles.fontIcon, { fontSize: 15, color: prefs.fontStep === 0 ? c.text3 : c.text }]}>A−</Text>
         </IconButton>
@@ -289,7 +323,11 @@ export function MainScreen({ prefs, onPref, keepOnReset, openRequest }: Props) {
         open={newOpen}
         id={null}
         initialGroup={active?.id ?? null}
-        onClose={() => setNewOpen(false)}
+        initialDate={newDate}
+        onClose={() => {
+          setNewOpen(false)
+          setNewDate(null)
+        }}
         onCreated={(hasReminders, id, mode) => {
           created(hasReminders)
           // Bei "Eigene" gleich den Eintrag öffnen, dort lassen sich die Erinnerungen anpassen.
@@ -317,6 +355,37 @@ export function MainScreen({ prefs, onPref, keepOnReset, openRequest }: Props) {
 }
 
 const FILTER_KEY = 'ui:groupFilter'
+const VIEW_KEY = 'ui:homeView'
+
+/** Umschalter Liste / Kalender oben links (Entwurf K1). */
+function ViewToggle({ value, onChange }: { value: 'list' | 'calendar'; onChange: (v: 'list' | 'calendar') => void }) {
+  const c = useColors()
+  const f = useFont()
+  const t = useT()
+  const item = (v: 'list' | 'calendar', icon: 'view-list' | 'calendar-month', label: string) => {
+    const on = value === v
+    return (
+      <Pressable
+        onPress={() => onChange(v)}
+        style={[styles.toggleItem, on && { backgroundColor: c.accent }]}
+        accessibilityRole="tab"
+        accessibilityState={{ selected: on }}
+        accessibilityLabel={label}
+      >
+        <MaterialIcons name={icon} size={17} color={on ? c.onAccent : c.text2} />
+        <Text style={{ color: on ? c.onAccent : c.text2, fontWeight: '600', fontSize: f(13.5) }} numberOfLines={1}>
+          {label}
+        </Text>
+      </Pressable>
+    )
+  }
+  return (
+    <View style={[styles.toggle, { backgroundColor: c.card }]} accessibilityRole="tablist">
+      {item('list', 'view-list', t.viewList)}
+      {item('calendar', 'calendar-month', t.viewCalendar)}
+    </View>
+  )
+}
 
 /** Farbpunkt hinter dem Namen. "Ohne Gruppe" bekommt keinen. */
 const groupColorOf = (g: Group | undefined) => (g && g.id !== NO_GROUP ? GROUP_COLORS[g.color] : null)
@@ -365,7 +434,9 @@ function IconButton({ label, disabled, onPress, children }: { label: string; dis
 const styles = StyleSheet.create({
   fill: { flex: 1 },
   topBar: { position: 'absolute', top: 0, left: 0, right: 0, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 4 },
-  topTitleWrap: { flex: 1, marginLeft: 16 },
+  topTitleWrap: { flex: 1, marginLeft: 12, alignItems: 'flex-start' },
+  toggle: { flexDirection: 'row', borderRadius: 12, padding: 3 },
+  toggleItem: { flexDirection: 'row', alignItems: 'center', gap: 5, paddingHorizontal: 10, paddingVertical: 6, borderRadius: 9 },
   topTitle: { fontWeight: '600' },
   menu: { width: 48, height: 48, alignItems: 'center', justifyContent: 'center' },
   fontIcon: { fontWeight: '700', letterSpacing: -0.5 },

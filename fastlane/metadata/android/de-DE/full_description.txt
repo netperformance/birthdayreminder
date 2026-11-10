@@ -1,0 +1,29 @@
+Birthdays speichert die Geburtstage deiner Freunde, deiner Familie und deiner Kollegen und erinnert dich rechtzeitig. Für jede Person legst du selbst fest, wann du erinnert wirst: am Tag, einen Tag, eine Woche oder zwei Wochen vorher, oder in einem eigenen Abstand. So bleibt genug Zeit für ein Geschenk.
+
+<b>Deine Daten bleiben auf deinem Handy</b>
+• Kein Konto, keine Cloud, keine Werbung, kein Tracking
+• Die App hat keinen Zugriff auf das Internet. Android selbst verhindert, dass Daten das Handy über die App verlassen.
+• Die automatische Android Sicherung in Googles Cloud ist abgeschaltet.
+• Eine Sicherung entsteht nur, wenn du sie selbst anlegst.
+
+<b>Was die App kann</b>
+• Startseite mit allen Geburtstagen nach Monaten, beginnend beim nächsten, mit Tagen bis dahin, kommendem Alter und Sternzeichen
+• Wer heute Geburtstag hat, steht oben in einer eigenen Karte
+• Kalender mit allen Geburtstagen des Monats und Übersicht über das ganze Jahr
+• Mehrere Erinnerungen pro Person, jede mit Uhrzeit und einem kurzen Hinweis wie „Geschenk kaufen“
+• Erinnerung als Benachrichtigung oder im Vollbild wie ein Wecker
+• Standard Erinnerungen für alle Einträge, für einzelne Personen eigene oder keine
+• Gruppen wie Familie, Freunde und Arbeit, jede mit eigener Farbe und als Filter auf der Startseite
+• Notiz und Foto für jeden Eintrag, das Foto aus Galerie, Kamera oder Kontakt
+• Geburtstage aus den Kontakten importieren, beliebig oft, ohne doppelte Einträge
+• Das Geburtsjahr ist freiwillig
+• Suche in Namen und Notizen, ein Monatsname zeigt alle Geburtstage dieses Monats
+• Auf dem Sperrbildschirm alles, nur den Namen oder keinen Namen zeigen
+• Zeitzonen: Geburtstage gelten nach deiner Zeit zu Hause, auch wenn du verreist bist
+• 29. Februar wahlweise am 28. Februar oder am 1. März
+• Hell, dunkel oder wie das Handy
+• Deutsch und Englisch
+• Sicherung speichern und laden, mit Bildern
+
+<b>Open Source</b>
+Birthdays ist Open Source unter der MIT Lizenz. Den Quellcode findest du auf GitHub: github.com/netperformance/birthdayreminder

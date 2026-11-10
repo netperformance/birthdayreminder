@@ -16,15 +16,23 @@
   <a href="LICENSE">MIT License</a>
 </p>
 
-<p align="center">
-  <img src="docs/images/screenshots-list.png" width="100%" alt="Home screen with today's birthday, an open entry with its reminders, and the home screen in dark mode">
-</p>
-
-<p align="center">
-  <img src="docs/images/screenshots-settings.png" width="66%" alt="Settings with language, reminders, groups, time zone and backup">
-</p>
-
 ## English
+
+### Screenshots
+
+<p align="center">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1.png" width="24%" alt="See whose birthday is next">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2.png" width="24%" alt="Notes, photos and your own reminders">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3.png" width="24%" alt="Pop-up notification or an alarm">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4.png" width="24%" alt="Your own groups in your own colors">
+</p>
+
+<p align="center">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/5.png" width="24%" alt="Read birthdays from your contacts">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/6.png" width="24%" alt="Save and restore a backup">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/7.png" width="24%" alt="All birthdays in a calendar">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/8.png" width="24%" alt="Your data belongs to you. Open source project and no ads.">
+</p>
 
 ### About the app
 
@@ -33,6 +41,7 @@ Birthdays keeps the birthdays of your friends and reminds you in time. Each entr
 ### Features
 
 - **Home screen:** Whoever has a birthday today appears in a card at the top. With several birthdays, swipe the cards or use the arrows, "1 / 3" and the dots show the position. Below, all entries follow by month, starting with the next birthday, with the days left, the age they will turn and the star sign.
+- **Calendar:** At the top left you switch between list and calendar, the app remembers the choice. The calendar shows the month, each day with a birthday carries up to two pictures with a ring in the group's color, from three people on "+1". Below are the birthdays of the month. A tapped day shows only its birthdays, an empty day offers "Add an entry on this day". The month name opens the whole year, where birthdays are colored dots, split for several groups. Swipe or use the arrows to change the month. The group filters apply here too.
 - **Done:** "Done" on the card, in the notification or on the full screen marks the person for today. No further reminders for this person today. It cannot be undone.
 - **New entry:** Name, birthday with a number keyboard that jumps to the next field by itself, year optional ("89" becomes 1989), a preview with weekday, days left, age and star sign, a note and the reminder mode.
 - **Entry:** Age, star sign, weekday of birth, note (saved automatically), picture from the gallery, the camera or the contact, and the reminders.
@@ -52,10 +61,10 @@ Birthdays keeps the birthdays of your friends and reminds you in time. Each entr
 The app asks for each permission only when it is needed:
 
 - **Notifications** for pop-ups (Android 13 and newer).
-- **Exact alarms** so reminders come on time (granted automatically).
+- **Exact alarms** so reminders come on time. On Android 13 and newer you allow this once in the settings, the app takes you there.
 - **Start after reboot** to reschedule the reminders.
 - **Full screen** over the lock screen, only for full screen reminders. Android 14 and newer ask once.
-- **Battery optimization off** (optional, important on Samsung and Xiaomi).
+- **Battery optimization off** (optional, important on Samsung and Xiaomi). The app opens the list of apps in Android settings, pick Birthdays there.
 - **Contacts** only when importing or taking a picture from a contact.
 - **Camera** only when taking a photo.
 - **Vibration** for the full screen.
@@ -78,6 +87,8 @@ bash scripts/build-apk.sh
 ```
 
 Runs on Linux or WSL with Node.js 20+ and Java 17 to 21. The signing key lives in `signing/` (listed in `.gitignore`). Keep it safe: Android only installs an update if it is signed with the same key. Before an update, increase `version` and `versionCode` in `app.json`.
+
+For Google Play, `bash scripts/build-apk.sh --play` builds an app bundle (`aab/Birthdays-<version>.aab`) instead of the APK. Google Play signs the app with its own key, so the Play version and the APKs from GitHub cannot update each other: switching means uninstalling first.
 
 ### Development
 
@@ -104,6 +115,22 @@ Birthdays is open source under the MIT license, see [LICENSE](LICENSE).
 
 ## Deutsch
 
+### Bildschirme
+
+<p align="center">
+  <img src="fastlane/metadata/android/de-DE/images/phoneScreenshots/1.png" width="24%" alt="Sehen, wer als Nächstes Geburtstag hat">
+  <img src="fastlane/metadata/android/de-DE/images/phoneScreenshots/2.png" width="24%" alt="Notiz, Foto und eigene Erinnerungen">
+  <img src="fastlane/metadata/android/de-DE/images/phoneScreenshots/3.png" width="24%" alt="Popup Benachrichtigung oder ein Wecker">
+  <img src="fastlane/metadata/android/de-DE/images/phoneScreenshots/4.png" width="24%" alt="Eigene Gruppen mit eigener Farbe">
+</p>
+
+<p align="center">
+  <img src="fastlane/metadata/android/de-DE/images/phoneScreenshots/5.png" width="24%" alt="Geburtstage aus den Kontakten lesen">
+  <img src="fastlane/metadata/android/de-DE/images/phoneScreenshots/6.png" width="24%" alt="Sicherung speichern und laden">
+  <img src="fastlane/metadata/android/de-DE/images/phoneScreenshots/7.png" width="24%" alt="Alle Geburtstage im Kalender">
+  <img src="fastlane/metadata/android/de-DE/images/phoneScreenshots/8.png" width="24%" alt="Deine Daten gehören dir. Open Source Projekt und keine Werbung.">
+</p>
+
 ### Über die App
 
 Birthdays speichert die Geburtstage deiner Freunde und erinnert dich rechtzeitig. Jeder Eintrag hat Name, Geburtstag (das Jahr ist freiwillig), eine Notiz, ein Bild und eigene Erinnerungen. Alter und Sternzeichen stehen überall dabei. Alle Daten bleiben in einer Datenbank auf dem Handy. Die App darf nicht ins Internet.
@@ -111,6 +138,7 @@ Birthdays speichert die Geburtstage deiner Freunde und erinnert dich rechtzeitig
 ### Funktionen
 
 - **Startseite:** Wer heute Geburtstag hat, steht oben in einer Karte. Bei mehreren wischt man die Karten oder tippt auf die Pfeile, „1 / 3“ und die Punkte zeigen die Stelle. Darunter folgen alle Einträge nach Monaten, beginnend beim nächsten Geburtstag, mit Tagen bis dahin, kommendem Alter und Sternzeichen.
+- **Kalender:** Oben links wechselt man zwischen Liste und Kalender, die App merkt sich die Wahl. Der Kalender zeigt den Monat, jeder Tag mit Geburtstag trägt bis zu zwei Bilder mit einem Ring in der Farbe der Gruppe, ab drei Personen „+1“. Darunter stehen die Geburtstage des Monats. Ein angetippter Tag zeigt nur seine Geburtstage, ein leerer Tag bietet „Eintrag an diesem Tag anlegen“. Der Monatsname öffnet das ganze Jahr, Geburtstage sind dort farbige Punkte, bei mehreren Gruppen geteilt. Wischen oder die Pfeile blättern. Die Gruppenfilter gelten auch hier.
 - **Beenden:** „Beenden“ auf der Karte, in der Benachrichtigung oder im Vollbild hakt die Person für heute ab. Für sie kommt heute keine Erinnerung mehr. Das lässt sich nicht zurücknehmen.
 - **Neuer Eintrag:** Name, Geburtstag mit Zifferntastatur, die von selbst ins nächste Feld springt, Jahr freiwillig („89“ wird 1989), Vorschau mit Wochentag, Abstand, Alter und Sternzeichen, Notiz und Art der Erinnerung.
 - **Eintrag:** Alter, Sternzeichen, Wochentag der Geburt, Notiz (speichert automatisch), Bild aus Galerie, Kamera oder Kontakt, und die Erinnerungen.
@@ -130,10 +158,10 @@ Birthdays speichert die Geburtstage deiner Freunde und erinnert dich rechtzeitig
 Die App fragt jede Erlaubnis erst, wenn sie gebraucht wird:
 
 - **Benachrichtigungen** für Popups (ab Android 13).
-- **Genaue Uhrzeit**, damit Erinnerungen pünktlich kommen (wird automatisch erteilt).
+- **Genaue Uhrzeit**, damit Erinnerungen pünktlich kommen. Ab Android 13 erlaubt man das einmal in den Einstellungen, die App führt dorthin.
 - **Start nach dem Einschalten**, um die Erinnerungen neu zu planen.
 - **Vollbild** über dem Sperrbildschirm, nur für Erinnerungen mit Vollbild. Ab Android 14 fragt Android einmal nach.
-- **Akku-Optimierung aus** (freiwillig, wichtig bei Samsung und Xiaomi).
+- **Akku-Optimierung aus** (freiwillig, wichtig bei Samsung und Xiaomi). Die App öffnet die Liste der Apps in den Android-Einstellungen, dort Birthdays auswählen.
 - **Kontakte** nur beim Import oder beim Bild aus einem Kontakt.
 - **Kamera** nur beim Fotografieren.
 - **Vibration** für das Vollbild.
@@ -156,6 +184,8 @@ bash scripts/build-apk.sh
 ```
 
 Läuft unter Linux oder WSL mit Node.js ab 20 und Java 17 bis 21. Der Signierschlüssel liegt in `signing/` (steht in `.gitignore`). Gut sichern: Android installiert ein Update nur, wenn es mit demselben Schlüssel signiert ist. Vor einem Update in `app.json` `version` und `versionCode` erhöhen.
+
+Für Google Play baut `bash scripts/build-apk.sh --play` statt der APK ein App-Bundle (`aab/Birthdays-<Version>.aab`). Google Play signiert die App mit einem eigenen Schlüssel. Deshalb lassen sich die Play-Version und die APKs von GitHub nicht gegenseitig aktualisieren: Wer wechselt, muss die App vorher deinstallieren.
 
 ### Entwickeln
 

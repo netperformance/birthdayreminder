@@ -8,6 +8,9 @@
 #
 # Aufruf im Projektordner:   bash scripts/build-apk.sh
 # Alles neu erzeugen:        bash scripts/build-apk.sh --clean
+# Für Google Play:           bash scripts/build-apk.sh --play
+#   baut statt der APK ein App-Bundle (aab/Birthdays-<Version>.aab) für 64- und 32-Bit-Handys.
+#   Play verlangt dieses Format. Signiert wird mit demselben Schlüssel (bei Play der Upload-Schlüssel).
 #
 # Voraussetzungen: Node.js ab 20, Java 17 bis 21, curl, unzip.
 # Ergebnis: apk/Birthdays-<Version>.apk
@@ -16,7 +19,15 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 ROOT="$PWD"
 CLEAN=0
-[[ "${1:-}" == "--clean" ]] && CLEAN=1
+PLAY=0
+for arg in "$@"; do
+  case "$arg" in
+    --clean) CLEAN=1 ;;
+    --play) PLAY=1 ;;
+    *) printf 'Unbekannte Option: %s\n' "$arg" >&2; exit 1 ;;
+  esac
+done
+export PLAY
 
 step() { printf '\n==> %s\n' "$*"; }
 fail() { printf '\nFehler: %s\n' "$*" >&2; exit 1; }
@@ -66,7 +77,8 @@ else
   npx expo prebuild --platform android --no-install
 fi
 
-# Signierung eintragen und nur für 64-Bit-Handys (arm64) bauen, das spart viel Zeit.
+# Signierung eintragen. Die APK nur für 64-Bit-Handys (arm64) bauen, das spart viel Zeit.
+# Für Play auch 32 Bit: Play liefert jedem Handy nur den passenden Teil aus.
 node - <<'JS'
 const fs = require('fs')
 const gradle = 'android/app/build.gradle'
@@ -94,7 +106,7 @@ if (!s.includes('birthdaysRelease')) {
 const propsFile = 'android/gradle.properties'
 let p = fs.readFileSync(propsFile, 'utf8')
 const set = (k, v) => { const re = new RegExp(`^${k}=.*$`, 'm'); p = re.test(p) ? p.replace(re, `${k}=${v}`) : p + `\n${k}=${v}` }
-set('reactNativeArchitectures', 'arm64-v8a')
+set('reactNativeArchitectures', process.env.PLAY === '1' ? 'armeabi-v7a,arm64-v8a' : 'arm64-v8a')
 // java.time für die Zeitzonen braucht Android 8 (API 26).
 set('android.minSdkVersion', '26')
 // Sparsam mit Arbeitsspeicher, damit der Bau auch auf Rechnern mit 8 GB nicht abbricht.
@@ -108,6 +120,19 @@ fs.writeFileSync(propsFile, p)
 JS
 
 # ---------- Bauen ----------
+if (( PLAY )); then
+  step "App-Bundle für Google Play bauen (Version $VERSION, Build $CODE)"
+  (cd android && ./gradlew bundleRelease --console=plain -q --init-script "$ROOT/scripts/maven-mirror.gradle")
+  OUT="aab/Birthdays-$VERSION.aab"
+  mkdir -p aab
+  cp android/app/build/outputs/bundle/release/app-release.aab "$OUT"
+  step "Fertig: $OUT"
+  keytool -printcert -jarfile "$OUT" 2>/dev/null | grep -m1 "SHA256" | sed 's/^\s*/  Signatur /' || true
+  ls -lh "$OUT" | awk '{print "  Größe " $5}'
+  echo "Dieses App-Bundle in der Play Console hochladen. Die APKs auf GitHub bleiben davon unberührt."
+  exit 0
+fi
+
 step "APK bauen (Version $VERSION, Build $CODE)"
 (cd android && ./gradlew assembleRelease --console=plain -q --init-script "$ROOT/scripts/maven-mirror.gradle")
 

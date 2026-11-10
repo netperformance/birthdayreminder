@@ -26,6 +26,7 @@ export function EditSheet({
   onClose,
   onCreated,
   initialGroup = null,
+  initialDate = null,
 }: {
   open: boolean
   /** null: neuer Eintrag */
@@ -34,6 +35,8 @@ export function EditSheet({
   onCreated?: (hasReminders: boolean, id: string, mode: ReminderMode) => void
   /** Gruppe für einen neuen Eintrag, etwa die auf der Startseite gewählte. */
   initialGroup?: string | null
+  /** Tag und Monat für einen neuen Eintrag, etwa der im Kalender gewählte Tag. */
+  initialDate?: { day: number; month: number } | null
 }) {
   const c = useColors()
   const f = useFont()
@@ -72,7 +75,9 @@ export function EditSheet({
     setDateParts(
       existing
         ? { day: String(existing.day).padStart(2, '0'), month: String(existing.month).padStart(2, '0'), year: existing.year ? String(existing.year) : '' }
-        : { day: '', month: '', year: '' },
+        : initialDate
+          ? { day: String(initialDate.day).padStart(2, '0'), month: String(initialDate.month).padStart(2, '0'), year: '' }
+          : { day: '', month: '', year: '' },
     )
     setFocused(null)
     setNote('')

@@ -182,8 +182,8 @@ export function SettingsSheet({
       <Label>{t.data}</Label>
       <Card>
         <Row icon="contacts" label={t.importContacts} chevron onPress={onImport} />
-        <Row icon="ios-share" label={t.saveBackup} onPress={exportBackup} />
-        <Row icon="file-download" label={t.loadBackup} onPress={importBackup} />
+        <Row icon="save" label={t.saveBackup} onPress={exportBackup} />
+        <Row icon="restore" label={t.loadBackup} onPress={importBackup} />
         <Row icon="delete-forever" label={t.deleteAll} danger last onPress={confirmReset} disabled={people.length === 0} />
       </Card>
 

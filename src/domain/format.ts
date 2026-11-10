@@ -34,6 +34,10 @@ const WEEKDAYS_SHORT: Record<Lang, string[]> = {
 
 export const monthName = (m: number, lang: Lang) => MONTHS[lang][m - 1]
 export const weekdayName = (day: Day, lang: Lang) => WEEKDAYS[lang][weekday(day)]
+/** Kurzer Wochentag, i: 0 = Sonntag. */
+export const weekdayShort = (i: number, lang: Lang) => WEEKDAYS_SHORT[lang][i]
+/** Kurzer Monat: "Nov." oder "Nov". */
+export const monthShort = (m: number, lang: Lang) => MONTHS_SHORT[lang][m - 1]
 
 /** Tag und Monat ohne Jahr: "7. Nov." oder "Nov 7". */
 export function dayMonthShort(day: Pick<Day, 'm' | 'd'>, s: DateStyle): string {

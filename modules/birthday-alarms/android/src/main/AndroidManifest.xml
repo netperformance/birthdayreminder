@@ -2,17 +2,16 @@
 
   <!-- Benachrichtigungen zeigen (ab Android 13 fragt die App einmal nach) -->
   <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-  <!-- Erinnerungen genau zur Uhrzeit. Android 12: SCHEDULE_EXACT_ALARM, ab Android 13 USE_EXACT_ALARM -->
-  <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" android:maxSdkVersion="32" />
-  <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+  <!-- Erinnerungen genau zur Uhrzeit. Der Nutzer erlaubt das einmal in den Einstellungen (ab Android 12).
+       USE_EXACT_ALARM erlaubt Google Play nur Weckern und Kalendern, deshalb nicht verwenden. -->
+  <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
   <!-- Nach dem Einschalten des Handys die Erinnerungen wieder planen -->
   <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-  <!-- Vollbild wie ein Wecker über dem Sperrbildschirm -->
+  <!-- Vollbild wie ein Wecker über dem Sperrbildschirm. Ab Android 14 erlaubt der Nutzer das selbst;
+       ohne Erlaubnis zeigt Android eine normale Benachrichtigung. In der Play Console erklären. -->
   <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
   <!-- Vibration beim Vollbild -->
   <uses-permission android:name="android.permission.VIBRATE" />
-  <!-- Direkt fragen, ob die Akku-Optimierung für die App aus sein darf -->
-  <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
   <application>
     <receiver android:name="de.aaron.birthdays.alarms.AlarmReceiver" android:exported="false" />
