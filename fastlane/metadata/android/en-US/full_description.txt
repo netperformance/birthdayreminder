@@ -1,29 +1,46 @@
-Birthdays keeps the birthdays of your friends, family and colleagues and reminds you in time. For each person you decide when you get reminded: on the day, one day, one week or two weeks before, or at your own interval. That leaves enough time for a present.
+Birthdays are special days. With Birthdays, the birthdays of your family, friends and colleagues are always in view. The app reminds you in good time, exactly the way you want. On the day itself or days and weeks ahead: you decide when and how you want to be reminded.
 
-<b>Your data stays on your phone</b>
-• No account, no cloud, no ads, no tracking
-• The app has no internet access. Android itself prevents data from leaving the phone through the app.
-• Android's automatic backup to Google's cloud is turned off.
-• A backup is only created when you create it yourself.
+<b>Your birthdays. Your data. Your phone.</b>
+Privacy isn't a setting, it's a given.
 
-<b>What the app does</b>
-• Home screen with all birthdays by month, starting with the next one, with days left, the age they will turn and the star sign
-• Whoever has a birthday today appears at the top in a card of their own
-• Calendar with all birthdays of the month and an overview of the whole year
-• Several reminders per person, each with a time and a short hint like "buy a present"
-• Reminders as a notification or full screen like an alarm clock
-• Default reminders for all entries, custom ones or none for single people
-• Groups like family, friends and work, each with its own color and as a filter on the home screen
-• Note and photo for every entry, the photo from the gallery, the camera or a contact
-• Import birthdays from your contacts, as often as you like, without duplicates
-• The year of birth is optional
-• Search in names and notes, a month name shows all birthdays in that month
-• On the lock screen show everything, only the name or no name
-• Time zones: birthdays follow your time at home, even when you travel
-• February 29 on February 28 or March 1 in other years
-• Light, dark or like the phone
-• English and German
-• Save and load a backup, with pictures
+• No account, no cloud, no ads and no tracking.
+• The app needs no internet access. Android technically prevents it from sending any data over the internet.
+• Android's automatic backup to Google's cloud is turned off as well.
+• Your data stays on your device. A backup is only created when you decide to make one.
 
-<b>Open source</b>
-Birthdays is open source under the MIT license. The source code is on GitHub: github.com/netperformance/birthdayreminder
+<b>Everything in view, nothing forgotten</b>
+
+<b>Your personal birthday overview</b>
+• All birthdays neatly sorted by month, starting with the next upcoming one.
+• See at a glance how many days are left, how old someone is turning and which zodiac sign they have.
+• Anyone celebrating today is highlighted.
+
+<b>Calendar and reminders</b>
+• Monthly calendar with all birthdays.
+• Multiple reminders per person, each with its own time and a personal note, for example “Buy a gift”.
+• Notification or full screen reminder in the style of an alarm clock.
+• Set general reminders or decide for each person whether and when you want to be reminded.
+
+<b>People who belong together</b>
+• Organize your entries in groups such as Family, Friends or Work, each with its own color.
+• Filter your birthday overview by the groups you care about right now.
+• Add personal notes and a photo from your gallery, camera or contacts to any entry.
+• Import birthdays from your address book as often as you like, without creating duplicates.
+
+<b>Lots of small details that make the difference</b>
+• The birth year is optional. A birthday works without an age, too.
+• Search by name and notes, or type a month name to find all birthdays in that month.
+• Decide what appears on the lock screen: all details, just the name or nothing at all.
+• Birthdays follow your home time zone, even while you're traveling.
+• For February 29, choose whether you're reminded on February 28 or March 1.
+• Light theme, dark theme or automatic to match your phone.
+• Fully available in English and German.
+
+<b>Back up and restore</b>
+• Create your own backups and restore them at any time, including the photos.
+
+<b>Open source. Open and transparent.</b>
+Birthdays is open source under the MIT license. You can look at the source code at any time and see exactly how the app works.
+
+You'll find the source code on GitHub:
+https://github.com/netperformance/birthdayreminder

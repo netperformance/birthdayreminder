@@ -1,29 +1,46 @@
-Birthdays speichert die Geburtstage deiner Freunde, deiner Familie und deiner Kollegen und erinnert dich rechtzeitig. Für jede Person legst du selbst fest, wann du erinnert wirst: am Tag, einen Tag, eine Woche oder zwei Wochen vorher, oder in einem eigenen Abstand. So bleibt genug Zeit für ein Geschenk.
+Geburtstage sind besondere Tage. Mit Birthdays hast du die Geburtstage deiner Familie, Freunde und Kollegen immer im Blick. Die App erinnert dich rechtzeitig daran, genau so, wie du es möchtest. Ob am Geburtstag selbst oder schon Tage und Wochen vorher: Du entscheidest, wann und wie du erinnert werden möchtest.
 
-<b>Deine Daten bleiben auf deinem Handy</b>
-• Kein Konto, keine Cloud, keine Werbung, kein Tracking
-• Die App hat keinen Zugriff auf das Internet. Android selbst verhindert, dass Daten das Handy über die App verlassen.
-• Die automatische Android Sicherung in Googles Cloud ist abgeschaltet.
-• Eine Sicherung entsteht nur, wenn du sie selbst anlegst.
+<b>Deine Geburtstage. Deine Daten. Dein Handy.</b>
+Privatsphäre ist keine Einstellung, sondern selbstverständlich.
 
-<b>Was die App kann</b>
-• Startseite mit allen Geburtstagen nach Monaten, beginnend beim nächsten, mit Tagen bis dahin, kommendem Alter und Sternzeichen
-• Wer heute Geburtstag hat, steht oben in einer eigenen Karte
-• Kalender mit allen Geburtstagen des Monats und Übersicht über das ganze Jahr
-• Mehrere Erinnerungen pro Person, jede mit Uhrzeit und einem kurzen Hinweis wie „Geschenk kaufen“
-• Erinnerung als Benachrichtigung oder im Vollbild wie ein Wecker
-• Standard Erinnerungen für alle Einträge, für einzelne Personen eigene oder keine
-• Gruppen wie Familie, Freunde und Arbeit, jede mit eigener Farbe und als Filter auf der Startseite
-• Notiz und Foto für jeden Eintrag, das Foto aus Galerie, Kamera oder Kontakt
-• Geburtstage aus den Kontakten importieren, beliebig oft, ohne doppelte Einträge
-• Das Geburtsjahr ist freiwillig
-• Suche in Namen und Notizen, ein Monatsname zeigt alle Geburtstage dieses Monats
-• Auf dem Sperrbildschirm alles, nur den Namen oder keinen Namen zeigen
-• Zeitzonen: Geburtstage gelten nach deiner Zeit zu Hause, auch wenn du verreist bist
-• 29. Februar wahlweise am 28. Februar oder am 1. März
-• Hell, dunkel oder wie das Handy
-• Deutsch und Englisch
-• Sicherung speichern und laden, mit Bildern
+• Kein Benutzerkonto, keine Cloud, keine Werbung und kein Tracking.
+• Die App benötigt keinen Internetzugriff. Android verhindert technisch, dass sie Daten über das Internet überträgt.
+• Auch die automatische Android Sicherung in Googles Cloud ist deaktiviert.
+• Deine Daten bleiben auf deinem Gerät. Eine Sicherung erstellst du nur dann, wenn du es selbst möchtest.
 
-<b>Open Source</b>
-Birthdays ist Open Source unter der MIT Lizenz. Den Quellcode findest du auf GitHub: github.com/netperformance/birthdayreminder
+<b>Alles im Blick und an alles gedacht</b>
+
+<b>Deine persönliche Geburtstagsübersicht</b>
+• Alle Geburtstage übersichtlich nach Monaten sortiert, beginnend mit dem nächsten anstehenden Geburtstag.
+• Sieh auf einen Blick, wie viele Tage noch bleiben, wie alt jemand wird und welches Sternzeichen dazugehört.
+• Wer heute Geburtstag hat, wird besonders hervorgehoben.
+
+<b>Kalender und Erinnerungen</b>
+• Monatskalender mit allen Geburtstagen.
+• Mehrere Erinnerungen pro Person, jeweils mit eigener Uhrzeit und persönlichem Hinweis, zum Beispiel „Geschenk kaufen“.
+• Benachrichtigung oder Vollbild Erinnerung im Stil eines Weckers.
+• Lege allgemeine Erinnerungen fest oder bestimme für jede Person individuell, wann und ob du erinnert werden möchtest.
+
+<b>Menschen, die zusammengehören</b>
+• Organisiere deine Einträge in Gruppen wie Familie, Freunde oder Arbeit, jeweils mit eigenen Farben.
+• Filtere deine Geburtstagsübersicht nach den Gruppen, die dich gerade interessieren.
+• Ergänze jeden Eintrag mit persönlichen Notizen und einem Foto aus deiner Galerie, Kamera oder deinen Kontakten.
+• Importiere Geburtstage aus deinem Adressbuch, auch mehrfach, ohne doppelte Einträge zu erzeugen.
+
+<b>Viele kleine Details, die den Unterschied machen</b>
+• Das Geburtsjahr ist freiwillig. Ein Geburtstag funktioniert auch ohne Altersangabe.
+• Suche nach Namen und Notizen oder finde mit einem Monatsnamen alle Geburtstage eines bestimmten Monats.
+• Entscheide selbst, was auf dem Sperrbildschirm angezeigt wird: alle Informationen, nur der Name oder gar nichts.
+• Geburtstage richten sich nach deiner Heimat Zeitzone, auch wenn du gerade unterwegs bist.
+• Für den 29. Februar kannst du festlegen, ob am 28. Februar oder am 1. März erinnert werden soll.
+• Helles Design, dunkles Design oder automatisch passend zu deinem Handy.
+• Vollständig auf Deutsch und Englisch verfügbar.
+
+<b>Sichern und wiederherstellen</b>
+• Erstelle eigene Sicherungen und stelle sie jederzeit wieder her, einschließlich der zugehörigen Bilder.
+
+<b>Open Source. Offen und transparent.</b>
+Birthdays ist Open Source und steht unter der MIT Lizenz. Du kannst dir den Quellcode jederzeit ansehen und nachvollziehen, wie die App funktioniert.
+
+Den Quellcode findest du auf GitHub:
+https://github.com/netperformance/birthdayreminder
